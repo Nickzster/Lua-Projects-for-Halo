@@ -24,11 +24,15 @@ def init(projectName):
         os.mkdir('functions')
         os.chdir('callbacks')
         __defs = open('__defs.lua', "w")
-        __defs.write("function OnScriptLoad()\nend")
+        __defs.write("--Callback Definition File.\n--Define your callbacks here.\n--You can implement your callback functions in here, or in separate file(s) within this directory.\nfunction OnScriptLoad()\nend")
         __defs.close()
         _cleanup = open('_cleanup.lua', "w")
-        _cleanup.write("function OnScriptUnload()\nend")
+        _cleanup.write("--Cleanup File.\n--Write your cleanup functions in here.\n\nfunction OnScriptUnload()\nend")
         _cleanup.close()
+        os.chdir('../functions')
+        functions = open('functions.lua', "w")
+        functions.write("--Utility Functions.\n--You can implement utility functions in here, or in separate file(s) within this directory.")
+        functions.close()
     except SystemExit:
         print("Project directory exists. Terminating init process.")
     except:
